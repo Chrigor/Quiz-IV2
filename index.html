@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+
+    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+    <meta name="theme-color" content="#0e153a">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/colors.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="script/script.js"></script>
+
+
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="main-header-nav container-fluid">
+            <a href="/index.html">
+                <img src="assets/logo.png" alt="Logomaker">
+            </a>
+            <ul>
+                <li>
+                    <a class="active" href="/index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/ranking.html">
+                        Ranking
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container-fluid">
+
+        <div class="container-modal">
+            <div class="modal">
+                <button onclick="navigateTo('ranking.html')">
+                    <i class="fas fa-list"></i>
+                </button>
+                <button onclick="restart()">
+                    <i class="fas fa-redo"></i>
+                </button>
+            </div>
+        </div>
+
+        <section class="container-answer">
+            <header>
+                <span id="timer"> - </span>
+                <div>
+                    <strong class="info-text">Difficulty: <span id="difficulty">hard</span></strong>
+                    <br />
+                    <strong class="info-text">Category: <span id="category">TI</span></strong>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, natus, rerum recusandae alias
+                    atque cumque ullam laborum nostrum iure commodi eligendi, accusantium blanditiis ea. Repudiandae
+                    assumenda suscipit cumque laboriosam praesentium.</p>
+            </header>
+            <ul class="answers">
+                <li>
+                    <button class="answer"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam molestias
+                        dolor culpa ea dolores enim iure </button>
+                </li>
+                <li>
+                    <button class="answer"> 2 </button>
+                </li>
+                <li>
+                    <button class="answer"> 2 </button>
+                </li>
+                <li>
+                    <button class="answer"> 2 </button>
+                </li>
+                <li>
+                    <button class="answer"> 2 </button>
+                </li>
+            </ul>
+        </section>
+    </main>
+</body>
+
+</html>
