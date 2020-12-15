@@ -9,6 +9,7 @@ window.onload = function () {
 }
 
 function mountRanking([first, second, third, quarterary, five, ...rest]) {
+    
     let $tbody = document.getElementById("tbody-ranking");
     const newArray = ([first, second, third, quarterary, five]).filter((elemento) => elemento != undefined);
 

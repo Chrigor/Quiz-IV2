@@ -1,10 +1,17 @@
 const API = "https://opentdb.com/api.php?amount=50";
-const TEN_SECONDS = 10 * 1000;
+const TEN_SECONDS = 11 * 1000;
 const ONE_SECOND = 1000;
 let state;
+let audio = new Audio("../assets/trilha_sonora.mp3");
 
 window.onload = async function () {
     start();
+
+    let $btnStartMusic = document.getElementById("startMusic");
+    $btnStartMusic.addEventListener("click", playmusic);
+
+    let $btnPauseMusic = document.getElementById("pauseMusic");
+    $btnPauseMusic.addEventListener("click", pauseMusic);
 }
 
 async function factoryQuiz() {
@@ -15,7 +22,7 @@ async function factoryQuiz() {
         },
         questions: results,
         questionActual: null,
-        questionsCorrect:0,
+        questionsCorrect: 0,
         time: {
             intervalReference: null,
             seconds: 10,
@@ -59,7 +66,7 @@ function callBack() {
             $timer.innerHTML = `${state.time.seconds}`;
             console.log(state.time.seconds);
 
-            if (state.time.seconds <= 1) {
+            if (state.time.seconds <= 0) {
                 clearInterval(state.time.intervalReferenceSeconds);
                 clearInterval(state.time.intervalReference);
                 setTimeout(finishQuiz, ONE_SECOND);
@@ -114,11 +121,7 @@ function handleClick(elemento) {
         return;
     }
 
-    let buttons = document.querySelectorAll(".answer");
-    buttons.forEach((btn) => {
-        btn.disabled = true;
-    })
-
+    blockButtons();
     const alternativa = elemento.innerText;
 
     if (answerIsCorrect(alternativa)) {
@@ -134,7 +137,7 @@ function handleClick(elemento) {
     clearInterval(state.time.intervalReferenceSeconds);
     clearInterval(state.time.intervalReference);
 
-    setTimeout(resetQuiz, ONE_SECOND);
+    setTimeout(resetQuiz, 500);
 }
 
 function resetQuiz() {
@@ -151,11 +154,7 @@ function answerIsCorrect(alternativa) {
 }
 
 function finishQuiz() {
-    console.log("ACABO PARSA");
-    console.log(state);
-
     const name = prompt("Qual o seu nome?") || "Desconhecido";
-    console.log(name);
 
     const data = {
         name,
@@ -183,15 +182,35 @@ function setItem(item) {
     localStorage.setItem("ranking", JSON.stringify(data));
 }
 
-function navigateTo(url){
+function navigateTo(url) {
     const urlFull = `http://${window.location.host}/${url}`
-    console.log(urlFull);
     window.location.replace(urlFull);
 }
 
-function restart(){
+function restart() {
     let $modal = document.querySelector(".container-modal");
     $modal.classList.remove("container-modal-active");
 
     start();
+}
+
+function blockButtons() {
+    let buttons = document.querySelectorAll(".answer");
+    buttons.forEach((btn) => {
+        btn.disabled = true;
+    })
+}
+
+function playmusic() {
+    audio.volume = 0.3;
+    audio.play();
+
+    audio.addEventListener('ended', function() {
+        this.currentTime = 0;
+        this.play();
+    }, false);
+}
+
+function pauseMusic(){
+    audio.pause();
 }
