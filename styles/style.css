@@ -131,6 +131,7 @@ main {
 
   padding:16px;
   width: 40vw;
+  height: 100%;
 
   background-color: var(--white);
 
