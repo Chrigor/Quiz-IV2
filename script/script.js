@@ -1,5 +1,5 @@
 const API = "https://opentdb.com/api.php?amount=50";
-const TEN_SECONDS = 11 * 1000;
+const FIFFTEEN_SECONDS = 16 * 1000;
 const ONE_SECOND = 1000;
 let state;
 let audio = new Audio("../assets/trilha_sonora.mp3");
@@ -36,7 +36,7 @@ async function factoryQuiz() {
 async function start() {
     state = await factoryQuiz();
     callBack();
-    state.time.intervalReference = setInterval(callBack, TEN_SECONDS);
+    state.time.intervalReference = setInterval(callBack, FIFFTEEN_SECONDS);
 }
 
 function getQuestions() {
@@ -48,7 +48,7 @@ function callBack() {
     clearInterval(state.time.intervalReferenceSeconds);
 
     let question = state.questions.pop();
-    state.time.seconds = 10;
+    state.time.seconds = 15;
 
     if (!question) {
         clearInterval(state.time.intervalReference);
@@ -142,7 +142,7 @@ function handleClick(elemento) {
 
 function resetQuiz() {
     if (!state.finished) {
-        state.time.intervalReference = setInterval(callBack, TEN_SECONDS);
+        state.time.intervalReference = setInterval(callBack, FIFFTEEN_SECONDS);
         callBack();
     } else {
         finishQuiz();
@@ -167,6 +167,12 @@ function finishQuiz() {
 
     let $modal = document.querySelector(".container-modal");
     $modal.classList.add("container-modal-active");
+
+    let $nickname = document.querySelector(".infos strong");
+    $nickname.innerText = name;
+
+    let $score = document.querySelector(".infos p span");
+    $score.innerText = state.player.score;
 }
 
 function setItem(item) {

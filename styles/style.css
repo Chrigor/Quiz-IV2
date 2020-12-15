@@ -97,8 +97,13 @@ button {
   background: var(--white);
 
   display:flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.infos {
+  margin-bottom: 16px;
 }
 
 .modal button {
@@ -252,4 +257,19 @@ button {
 
 button:hover > i.icon-music {
   color: var(--third);
+}
+
+
+@media screen and (max-width: 992px) {
+  body {
+    background-color: blue;
+  }
+
+  .container-answer {
+    width: 90vw;
+  }
+
+  .modal {
+    width: 75%;
+  }
 }
